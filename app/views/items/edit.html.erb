@@ -1,0 +1,19 @@
+<%= link_to "< Geri", @item.list %>
+
+<%= form_for([@item.list, @item]) do |f| %>
+  <p>
+    <label>
+      İçerik:
+      <%= f.text_field :content %>
+    </label>
+  </p>
+  <p>
+    <label>
+      <p>
+        Notlar:
+      </p>
+      <%= f.text_area :notes, rows: 10 %>
+    </label>
+  </p>
+  <%= f.submit 'Kaydet' %>
+<% end %>

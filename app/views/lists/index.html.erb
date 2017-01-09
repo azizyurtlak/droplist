@@ -1,0 +1,28 @@
+<h1>Listelerim</h1>
+
+<ul>
+  <% @lists.each do |list| %>
+    <li>
+      <%= link_to list.name, list %> - <%= link_to "Sil", list, method: :delete, data: { confirm: 'Emin misiniz?' } %>
+    </li>
+  <% end %>
+</ul>
+
+<% if @lists.count == 0 %>
+  <p>
+    Hiç liste yok! Yeni liste ekleyin.
+  </p>
+<% end %>
+
+<hr />
+
+<h3>Yeni Liste Oluştur</h3>
+<%= form_for(List.new) do |f| %>
+  <p>
+    <label>
+      Liste Adı:
+      <%= f.text_field :name %>
+    </label>
+  </p>
+  <%= f.submit "Oluştur" %>
+<% end %>

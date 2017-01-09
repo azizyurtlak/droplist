@@ -1,0 +1,42 @@
+<%= link_to '< Tüm Listeler', lists_path %>
+
+<h1><%= @list.name %></h1>
+
+<div>
+  <% @list.items.each do |item| %>
+    <p>
+      <%= form_for([@list, item]) do |f| %>
+        <label onclick="this.form.submit()">
+          <%= f.check_box :is_done %>
+          <%= item.content %>
+        </label>
+        -
+        <%= link_to "Düzenle", edit_list_item_path(list_id: item.list_id, id: item.id) %>
+        -
+        <%= link_to "Sil", [@list, item], method: :delete, data: { confirm: 'Emin misiniz?' } %>
+        <% if item.notes.present? %>
+          (not var)
+        <% end %>
+      <% end %>
+    </p>
+  <% end %>
+</div>
+
+<% if @list.items.count == 0 %>
+  <p>
+    Liste boş! Yeni madde ekleyin.
+  </p>
+<% end %>
+
+<hr />
+
+<h3>Yeni Madde Ekle</h3>
+<%= form_for([@list, Item.new]) do |f| %>
+  <p>
+    <label>
+      İçerik:
+      <%= f.text_field :content %>
+    </label>
+  </p>
+  <%= f.submit "Oluştur" %>
+<% end %>
