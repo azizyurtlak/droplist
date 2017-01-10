@@ -9,6 +9,18 @@
   </p>
   <p>
     <label>
+      Bitiş Tarihi:
+      <%= f.datetime_select :due_time, start_year: Date.today.year, include_blank: true %>
+    </label>
+  </p>
+  <p>
+    <label>
+      Hatırlat:
+      <%= f.select :reminder_time, [['Hiçbir zaman', nil], ['1 saat önce', 1.hour], ['1 gun önce', 1.day], ['1 hafta önce', 1.week]] %>
+    </label>
+  </p>
+  <p>
+    <label>
       <p>
         Notlar:
       </p>

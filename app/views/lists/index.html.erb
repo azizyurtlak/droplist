@@ -16,6 +16,17 @@
 
 <hr />
 
+<% if @upcoming_items.present? %>
+  <h3>Hatırlatmalar</h3>
+  <% @upcoming_items.each do |item| %>
+    <p>
+      <%= link_to item.content, item.list %>, <%= item.due_time.strftime('%d/%m/%y %H:%M') %> (<%= item.list.name %>)
+    </p>
+  <% end %>
+
+  <hr />
+<% end %>
+
 <h3>Yeni Liste Oluştur</h3>
 <%= form_for(List.new) do |f| %>
   <p>

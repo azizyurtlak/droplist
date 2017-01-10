@@ -1,6 +1,7 @@
 class ListsController < ApplicationController
   def index
     @lists = List.all
+    @upcoming_items = Item.upcomings
   end
 
   def show
